@@ -1,0 +1,42 @@
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+{namespace v=FluidTYPO3\Vhs\ViewHelpers}
+
+<bk2k:dataRelation uid="{data.uid}" table="tx_bootstrappackage_tabs_item">
+    <f:if condition="{items}">
+        <ul class="nav nav-tabs">
+            <f:for each="{items}" as="item" iteration="iteration">
+                <f:if condition="{iteration.isFirst}">
+                    <f:then>
+                        <v:variable.set name="tabClass" value="active" />
+                    </f:then>
+                    <f:else>
+                        <v:variable.set name="tabClass" value="" />
+                    </f:else>
+                </f:if>
+                <li class="{tabClass}">
+                    <a data-toggle="tab" href="#tab-{data.uid}-{item.uid}">{item.header}</a>
+                </li>
+            </f:for>
+        </ul>
+        <div class="tab-content">
+            <f:for each="{items}" as="item" iteration="iteration">
+                <f:if condition="{iteration.isFirst}">
+                    <f:then>
+                        <v:variable.set name="tabClass" value="in active" />
+                    </f:then>
+                    <f:else>
+                        <v:variable.set name="tabClass" value="" />
+                    </f:else>
+                </f:if>
+                <div id="tab-{data.uid}-{item.uid}" class="tab-pane fade {tabClass}">
+                    <div class="tab-body">
+                        <f:format.html>{item.bodytext}</f:format.html>
+                    </div>
+                </div>
+
+            </f:for>
+        </div>
+
+    </f:if>
+</bk2k:dataRelation>
+

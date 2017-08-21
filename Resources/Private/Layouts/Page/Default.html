@@ -1,0 +1,57 @@
+
+    <div id="wrapper">
+        <header class="top">
+            <div class="inside">
+                <div class="service">
+                    <f:cObject typoscriptObjectPath="lib.navigation.service" />
+                </div>
+                <div class="logo">
+                    <f:if condition="{logoFile}">
+                        <f:then>
+                            <f:link.page pageUid="{rootPage}" class="navbar-brand navbar-brand-image">
+                                <img src="{f:uri.image(src: logoFile)}" height="{logoHeight}" width="{logoWidth}" />
+                            </f:link.page>
+                        </f:then>
+                        <f:else>
+                            <f:link.page pageUid="{rootPage}" class="navbar-brand">{siteTitle}</f:link.page>
+                        </f:else>
+                    </f:if>
+                </div>
+                <nav>
+                    <f:render partial="Navigation/Main" arguments="{_all}" />
+                </nav>
+
+            </div>
+
+        </header>
+        <div id="container">
+            <div class="pageimage">
+                <f:cObject typoscriptObjectPath="lib.dynamicContentSlide" data="4" />
+            </div>
+            <div class="breadcrumb">
+                <f:cObject typoscriptObjectPath="lib.navigation.breadcrumb" data="0" />
+            </div>
+            <!--TYPO3SEARCH_begin-->
+            <div id="main">
+                <f:render section="Main" />
+            </div>
+            <!--TYPO3SEARCH_end-->
+            <div id="right">
+                <div class="inside">
+                    <f:cObject typoscriptObjectPath="lib.navigation.subnavigation" />
+                    <f:cObject typoscriptObjectPath="lib.dynamicContentSlide" data="30" />
+					<div class="social">
+						<f:cObject typoscriptObjectPath="lib.additionalContent.social" />
+					</div>
+					<div class="splash">
+						<f:cObject typoscriptObjectPath="lib.dynamicContentSlide" data="29" />
+					</div>
+                </div>
+            </div>
+
+            <f:render partial="Structure/Footer" arguments="{_all}" />
+
+        </div>
+
+
+    </div>
